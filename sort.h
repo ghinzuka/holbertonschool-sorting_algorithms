@@ -14,15 +14,9 @@
  */
 typedef struct listint_s
 {
-<<<<<<< HEAD
 	const int n;
 	struct listint_s *prev;
 	struct listint_s *next;
-=======
-    const int n;
-    struct listint_s *prev;
-    struct listint_s *next;
->>>>>>> rosario
 } listint_t;
 
 void print_array(const int *array, size_t size);
