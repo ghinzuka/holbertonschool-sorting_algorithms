@@ -20,4 +20,8 @@ void print_list(const listint_t *list)
         list = list->next;
     }
     printf("\n");
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> rosario
