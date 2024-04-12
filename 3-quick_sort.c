@@ -12,13 +12,15 @@ int quick_sort_divide (int *array, int lower, int bigger, size_t size)
 {
 	int i = lower; int j = lower;
 	int pivot = bigger;
+	int swap;
 
 	for (j = lower; j < bigger; j++)
 	{
-		if (j < pivot)
+		if (array[j] < pivot)
 		{
-			array[i] = array[j];
-			array[j] = array[i];
+			array[j] = array[swap];
+			array[swap] = array[i];
+			array[j] = array[swap];
 		}
 	}
 }
