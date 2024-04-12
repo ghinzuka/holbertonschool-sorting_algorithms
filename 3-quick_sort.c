@@ -1,16 +1,18 @@
 #include "sort.h"
 
 /**
- * quick_sort_divide - divide the array into two parts to organize it around the pivot
+ * quick_sort_divide - divide the array into two parts to organize it
+ * around the pivot
  * @array: pointer of the array be sorted
  * @lower: the lower element of the array
  * @bigger: the bigger element of the array
  * @size: size of the array
+ * Return: i
 */
-
-int quick_sort_divide (int *array, int lower, int bigger, size_t size)
+int quick_sort_divide(int *array, int lower, int bigger, size_t size)
 {
-	int i = lower; int j = lower;
+	int i = lower;
+	int j = lower;
 	int pivot = bigger;
 	int swap = 0;
 
@@ -22,7 +24,7 @@ int quick_sort_divide (int *array, int lower, int bigger, size_t size)
 			array[i] = array[j];
 			array[swap] = array[i];
 		}
-		
+
 		if (array[j] != array[swap])
 		{
 			print_array(array, size);
@@ -41,14 +43,15 @@ int quick_sort_divide (int *array, int lower, int bigger, size_t size)
 }
 
 /**
- * quick_sort_pivot - select an element in the array for being the pivot of your function
+ * quick_sort_pivot - select an element in the array for being
+ * the pivot of your function
  * @array: pointer of the array be sorted
  * @lower: the lower element of the array
  * @bigger: the bigger element of the array
  * @size: size of the array
 */
 
-void quick_sort_pivot (int *array, int lower, int bigger, size_t size)
+void quick_sort_pivot(int *array, int lower, int bigger, size_t size)
 {
 	int pivot;
 
@@ -62,9 +65,10 @@ void quick_sort_pivot (int *array, int lower, int bigger, size_t size)
 	}
 
 	pivot = quick_sort_divide(array, lower, bigger, size);
-    quick_sort_pivot(array, lower, pivot - 1, size);
-    quick_sort_pivot(array, pivot + 1, bigger, size);
+	quick_sort_pivot(array, lower, pivot - 1, size);
+	quick_sort_pivot(array, pivot + 1, bigger, size);
 }
+
 /**
  * quick_sort - sorts an array of integers in ascending order using Quick sort
  * @array: pointer of the array be sorted
