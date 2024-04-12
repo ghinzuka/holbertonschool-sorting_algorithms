@@ -16,11 +16,21 @@ int quick_sort_divide (int *array, int lower, int bigger, size_t size)
 
 	for (j = lower; j < bigger; j++)
 	{
+		if(pivot == NULL)
+		{
+			return;
+		}
+
 		if (array[j] < pivot)
 		{
 			array[j] = array[swap];
 			array[swap] = array[i];
 			array[j] = array[swap];
+		}
+		
+		if (array[j] != array[swap])
+		{
+			print_array(array, size);
 		}
 	}
 }
