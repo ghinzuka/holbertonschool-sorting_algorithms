@@ -73,5 +73,5 @@ void quick_sort_pivot (int *array, int lower, int bigger, size_t size)
 
 void quick_sort(int *array, size_t size)
 {
-
+	quick_sort_divide(array, 0, size - 1, size);
 }
