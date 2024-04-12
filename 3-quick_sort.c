@@ -24,8 +24,8 @@ int quick_sort_divide (int *array, int lower, int bigger, size_t size)
 		if (array[j] < pivot)
 		{
 			array[j] = array[swap];
-			array[swap] = array[i];
-			array[j] = array[swap];
+			array[i] = array[j];
+			array[i] = array[swap];
 		}
 		
 		if (array[j] != array[swap])
