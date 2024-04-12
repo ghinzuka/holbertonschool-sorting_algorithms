@@ -12,20 +12,15 @@ int quick_sort_divide (int *array, int lower, int bigger, size_t size)
 {
 	int i = lower; int j = lower;
 	int pivot = bigger;
-	int swap;
+	int swap = 0;
 
 	for (j = lower; j < bigger; j++)
 	{
-		if(pivot == NULL)
-		{
-			return;
-		}
-
 		if (array[j] < pivot)
 		{
 			array[j] = array[swap];
 			array[i] = array[j];
-			array[i] = array[swap];
+			array[swap] = array[i];
 		}
 		
 		if (array[j] != array[swap])
@@ -33,6 +28,16 @@ int quick_sort_divide (int *array, int lower, int bigger, size_t size)
 			print_array(array, size);
 		}
 	}
+
+	array[swap] = array[i];
+	array[i] = array[bigger];
+	array[bigger] = array[swap];
+
+	if (array[i] != array[swap])
+	{
+		print_array(array, size);
+	}
+	return (i);
 }
 
 /**
@@ -43,7 +48,7 @@ int quick_sort_divide (int *array, int lower, int bigger, size_t size)
  * @size: size of the array
 */
 
-int quick_sort_pivot (int *array, int lower, int bigger, size_t size)
+void quick_sort_pivot (int *array, int lower, int bigger, size_t size)
 {
 	int pivot;
 
@@ -55,7 +60,8 @@ int quick_sort_pivot (int *array, int lower, int bigger, size_t size)
 	{
 		return;
 	}
-	int pivot = quick_sort_divide(array, lower, bigger, size);
+
+	pivot = quick_sort_divide(array, lower, bigger, size);
     quick_sort_pivot(array, lower, pivot - 1, size);
     quick_sort_pivot(array, pivot + 1, bigger, size);
 }
