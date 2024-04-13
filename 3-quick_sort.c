@@ -9,6 +9,7 @@
  * @size: size of the array
  * Return: i
 */
+
 int quick_sort_divide(int *array, int lower, int bigger, size_t size)
 {
 	int i = lower;
@@ -23,7 +24,7 @@ int quick_sort_divide(int *array, int lower, int bigger, size_t size)
 			array[swap] = array[j];
 			array[j] = array[i];
 			array[i] = array[swap];
-			
+
 			if (array[i] != array[swap])
 			{
 				print_array(array, size);
