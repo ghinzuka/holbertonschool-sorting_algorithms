@@ -1,4 +1,5 @@
 #include "sort.h"
+#include <stdio.h>
 
 /**
  * quick_sort_divide - divide the array into two parts to organize it
@@ -12,35 +13,35 @@
 
 int quick_sort_divide(int *array, int lower, int bigger, size_t size)
 {
-	int i = lower;
-	int j = lower;
-	int pivot = bigger;
-	int swap = 0;
+	int i = lower - 1;
+	int j;
+	int pivot = array[bigger];
+	int swap;
 
 	for (j = lower; j < bigger; j++)
 	{
 		if (array[j] < pivot)
 		{
-			array[j] = array[swap];
-			array[i] = array[j];
-			array[swap] = array[i];
+			i++;
+			if (i != j)
+			{
+				swap = array[i];
+				array[i] = array[j];
+				array[j] = swap;
+				print_array(array, size);
+			}
 		}
 
-		if (array[j] != array[swap])
-		{
-			print_array(array, size);
-		}
 	}
 
-	array[swap] = array[i];
-	array[i] = array[bigger];
-	array[bigger] = array[swap];
-
-	if (array[i] != array[swap])
+	if (array[i + 1] > array[bigger])
 	{
+		swap = array[i + 1];
+		array[i + 1] = array[bigger];
+		array[bigger] = swap;
 		print_array(array, size);
 	}
-	return (i);
+	return (i + 1);
 }
 
 /**
@@ -56,18 +57,12 @@ void quick_sort_pivot(int *array, int lower, int bigger, size_t size)
 {
 	int pivot;
 
-	if (lower > bigger)
+	if (lower < bigger)
 	{
-		return;
+		pivot = quick_sort_divide(array, lower, bigger, size);
+		quick_sort_pivot(array, lower, pivot - 1, size);
+		quick_sort_pivot(array, pivot + 1, bigger, size);
 	}
-	if (lower < 0)
-	{
-		return;
-	}
-
-	pivot = quick_sort_divide(array, lower, bigger, size);
-	quick_sort_pivot(array, lower, pivot - 1, size);
-	quick_sort_pivot(array, pivot + 1, bigger, size);
 }
 
 /**
@@ -78,5 +73,8 @@ void quick_sort_pivot(int *array, int lower, int bigger, size_t size)
 
 void quick_sort(int *array, size_t size)
 {
-	quick_sort_divide(array, 0, size - 1, size);
+	if (array != NULL || size > 2)
+	{
+		quick_sort_pivot(array, 0, size - 1, size);
+	}
 }
